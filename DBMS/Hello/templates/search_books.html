@@ -1,0 +1,32 @@
+<!-- search_books.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-5">Search Books by ISBN</h2>
+    <form method="GET" class="mb-4">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" name="isbn" id="isbn" class="form-control me-2" placeholder="Enter ISBN Number">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    {% if book_not_found %}
+        <div class="alert alert-danger" role="alert">
+            Book not found. Please check the ISBN number and try again.
+        </div>
+    {% elif book_details %}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Book Details:</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Title:</strong> {{ book_details.title }}</li>
+                <li class="list-group-item"><strong>Author:</strong> {{ book_details.author }}</li>
+                <li class="list-group-item"><strong>ISBN:</strong> {{ book_details.isbn }}</li>
+                <!-- Add more details as needed -->
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

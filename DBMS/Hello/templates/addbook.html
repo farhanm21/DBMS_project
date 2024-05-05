@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+</head>
+{% block content %}
+
+    <h1>Add Book</h1>
+    <form method="POST" action="{% url 'addbook' %}">
+        {% csrf_token %}
+        {% if form.errors %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			  Your Form Has Errors
+			  {% for field in form %}
+			  	{% if field.errors %}
+			  		{{ field.errors }}
+			  	{% endif %}
+			  {% endfor %}
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endif %}
+
+        {{ form.as_p }}
+        <br/>
+        <button type="submit" class="btn btn-secondary">Add Book</button>
+      </form>
+  
+    {% endblock  %}
+</html>
+

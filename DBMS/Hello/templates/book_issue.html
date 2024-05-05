@@ -1,0 +1,33 @@
+<!-- issue_book_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <h2>Issue a Book</h2>
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="student_id" class="form-label">Student ID:</label>
+        <input type="text" class="form-control" id="student_id" name="student_id" required>
+      </div>
+      <div class="mb-3">
+        <label for="book_id" class="form-label">Book ID:</label>
+        <input type="text" class="form-control" id="book_id" name="book_id" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Issue Book</button>
+    </form>
+    {% if error_message %}
+    <div class="alert alert-danger mt-3" role="alert">
+        {{ error_message }}
+    </div>
+    {% endif %}
+    {% if success_message %}
+    <div class="alert alert-success mt-3" role="alert">
+        {{ success_message }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block body %}
+{% if messages %}
+<div class="alert alert-warning" role="alert">
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<div class="col-md-6 offset-md-3">
+    <h1>Register</h1>
+    <br/>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Your Form Has Errors
+            {% for field in form %}
+            {% for error in field.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        {{ form.as_p }}
+
+        <br/>
+        <button type="submit" class="btn btn-secondary">Register</button>
+    </form>
+</div>
+{% endblock %}

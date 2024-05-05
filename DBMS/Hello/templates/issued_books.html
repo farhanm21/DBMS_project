@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Issued Books</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Genre</th>
+                <th>Student Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book_with_student in books_with_students %}
+            <tr>
+                <td>{{ book_with_student.0 }}</td>
+                <td>{{ book_with_student.1 }}</td>
+                <td>{{ book_with_student.2 }}</td>
+                <td>{{ book_with_student.3 }}</td>
+                <td>{{ book_with_student.4 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
